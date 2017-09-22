@@ -40,13 +40,19 @@ def recode_trends(indir, outdir):
     
         for folder in folders:
         
-            in_trends_list = glob.glob(os.path.join(mainroot, folder) + os.sep + "*.tif")
+            in_trends_list = None
+
+            infolder = os.path.join(mainroot, folder)
+
+            in_trends_list = glob.glob(infolder + os.sep + "*.tif")
 
             if len(in_trends_list) == 0:
 
-                in_trends_list = glob.glob(os.path.join(mainroot, folder) + os.sep + "*.img")
+                in_trends_list = glob.glob(infolder + os.sep + "*.img")
 
             if len(in_trends_list) == 0:
+
+                os.removedirs(infolder)
 
                 continue
             
